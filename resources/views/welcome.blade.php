@@ -34,6 +34,55 @@
             </div>
         </div>
     </header>
+
+    
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__top">
+                <a class="logo footer__logo" href="/">
+                    <img class="logo__img" src="{{ asset('images/footer-logo.svg') }}" alt="логотип">
+                </a>
+                <div class="footer__phone">
+                    <p class="footer__title">
+                        Номер для заказа
+                    </p>
+                    <div class="footer__phone-link">
+                        <div class="footer__phone-icon">
+                            <img src="{{ asset('images/phone-ico.svg') }}" width="24" height="24" alt="телефон">
+                        </div>
+                        <a href="tel:+79308333811" class="link">+7(930)833-38-11</a>
+                    </div>
+                </div>
+                <div class="footer__social">
+                    <p class="footer__title">
+                        Мы в соцсетях
+                    </p>
+                    <ul class="footer__social-items">
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">
+                                <img src="{{ asset('images/vk.svg') }}" alt="вк" class="footer__img">
+                            </a>
+                        </li>
+                        <li class="footer__item">
+                            <a href="#" class="footer__link">
+                                <img src="{{ asset('images/telegram.svg') }}" alt="телеграмм" class="footer__img">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">
+                    © YouMeal, 2022
+                </p>
+                <p class="footer__design">
+                    Design:
+                    <a class="footer__author link" href="#">Anastasia Ilina</a>
+                </p>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
