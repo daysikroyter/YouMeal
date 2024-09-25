@@ -71,12 +71,41 @@ body {
   line-height: 1.3;
   color: #000;
   background-color: #F9F9F9;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none;
+  z-index: 5;
+}
+
+body.lock::before {
+  display: block;
+  animation: tabs 0.1s linear;
 }
 
 .container {
-  max-width: 1320px;
+  max-width: 1420px;
   padding: 0 15px;
   margin: 0 auto;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  display: none;
 }
 
 .link {
@@ -118,6 +147,49 @@ body {
   padding-bottom: 70px;
 }
 
+.header__img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.header__img {
+  animation: burger 4s infinite;
+}
+
+@keyframes burger {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.header__circle {
+  animation: shadow 4s infinite;
+}
+
+@keyframes shadow {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .header__info {
   max-width: 440px;
   padding-top: 45px;
@@ -128,11 +200,25 @@ body {
   font-size: 50px;
   font-weight: 800;
   line-height: 1.2;
+  position: relative;
+  overflow: hidden;
   margin-bottom: 50px;
 }
 
 .header__title span {
   color: #ff5c00;
+}
+
+.header .animated-text {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.header .visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .header__subtitle {
@@ -217,5 +303,285 @@ body {
 
 .footer__copyright {
   margin-bottom: 5px;
+}
+
+.categories {
+  padding: 40px 0 100px;
+}
+
+.categories__tabs {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 5px;
+  margin-bottom: 50px;
+}
+
+.categories__tab {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 15px;
+  border-radius: 50px;
+  background-color: #fff;
+  transition: background-color 0.5s ease, box-shadow 0.5s ease, opacity 0.5s ease;
+}
+
+.categories__tab.tab--active {
+  background-color: #ffab08;
+}
+
+.categories__tab:focus {
+  box-shadow: 0 0 0 2px rgba(255, 171, 8, 0.7);
+}
+
+.categories__tab:hover {
+  background-color: #ffab08;
+}
+
+.categories__tab:active {
+  box-shadow: none;
+  opacity: 0.75;
+}
+
+.categories__tab-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.categories__content {
+  display: flex;
+  gap: 30px;
+  align-items: start;
+}
+
+.categories__cart {
+  max-width: 300px;
+  width: 100%;
+  background-color: #FFF;
+  padding: 24px 16px;
+  border-radius: 18px;
+  margin-top: 72px;
+}
+
+.categories__cart-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.categories__cart-title {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.categories__cart-count {
+  width: 40px;
+  height: 20px;
+  font-size: 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background-color: #F2F2F3;
+}
+
+.categories__list {
+  max-width: 960px;
+}
+
+.categories__item {
+  display: none;
+}
+
+.categories__item.tabs-content--active {
+  display: block;
+  animation: tabs 0.5s linear;
+}
+
+.categories__title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.categories__elements {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.categories__elem {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  padding: 12px;
+  border-radius: 18px;
+  background-color: #fff;
+}
+
+.categories__elem-img {
+  width: 100%;
+  height: 220px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.categories__elem-price {
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.categories__elem-title {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
+.categories__elem-weight {
+  display: block;
+  font-weight: 600;
+  color: #b1b1b1;
+  margin-bottom: 8px;
+  margin-top: auto;
+}
+
+.categories__elem-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: #F2F2F3;
+}
+
+.categories__popup {
+  position: fixed;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  max-width: 685px;
+  width: 100%;
+  border-radius: 24px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  display: none;
+}
+
+.categories__popup.categories__popup--active {
+  display: block;
+  animation: tabs 0.2s linear;
+}
+
+.categories__popup-title {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.categories__popup-info {
+  margin-bottom: 40px;
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+}
+
+.categories__popup-img {
+  width: 276px;
+  flex-shrink: 0;
+  height: 220px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 16px;
+}
+
+.categories__popup-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.categories__popup-composition {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.categories__popup-list {
+  margin-bottom: 5px;
+}
+
+.categories__popup-item:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.categories__popup-weight {
+  color: #b1b1b1;
+}
+
+.categories__popup-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.categories__popup-btn {
+  max-width: 276px;
+  width: 100%;
+  border-radius: 12px;
+  color: #fff;
+  background-color: #FF7020;
+  line-height: 1;
+  padding: 12px;
+}
+
+.categories__popup-price {
+  font-size: 24px;
+  font-weight: 600;
+  margin-left: auto;
+}
+
+.input-field {
+  width: 84px;
+  height: 40px;
+  border-radius: 12px;
+  background-color: #F2F2F3;
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: center;
+  padding: 0 12px;
+  position: relative;
+}
+
+.input-field__number-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes tabs {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
